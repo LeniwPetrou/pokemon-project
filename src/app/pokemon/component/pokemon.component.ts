@@ -4,7 +4,8 @@ import { PokemonService } from '../services/http-service';
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
-  styleUrls: ['./pokemon.component.scss']
+  styleUrls: ['./pokemon.component.scss'],
+  // standalone: true
 })
 export class PokemonComponent implements OnInit {
 

@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { DynamicTableComponent } from './shared/components/dynamic-table/dynamic-table.component';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     MatToolbarModule,
     RouterTestingModule,
+    RouterModule,
     SharedModule
   ],
   exports: [

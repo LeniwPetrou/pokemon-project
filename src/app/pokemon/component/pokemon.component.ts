@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss'],
   standalone: true,
-  imports: [MatButtonModule]
+  imports: [MatButtonModule, SharedModule]
 })
 export class PokemonComponent implements OnInit {
 

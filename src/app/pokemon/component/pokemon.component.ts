@@ -5,7 +5,7 @@ import { PokemonService } from '../services/http-service';
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss'],
-  // standalone: true
+  standalone: true
 })
 export class PokemonComponent implements OnInit {
 

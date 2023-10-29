@@ -8,16 +8,11 @@ const routes: Routes = [
     redirectTo: 'home', 
     pathMatch: 'full'
   },
-  // { 
-  //   path: 'pokemon',
-  //   loadComponent: () => ('./pokemon/pokemon.component').then(m) => m.PokemonComponent 
-  // },
-  // {
-  //   path: 'pokemon',
-  //   component: () => 
-  //     import('./pokemon/pokemon.component').then(x => x.PokemonComponent)
-  // },
-  
+  {
+    path: 'pokemon',
+    loadComponent: () => 
+      import('./pokemon/component/pokemon.component').then(c => c.PokemonComponent)
+  }, 
 ];
 
 @NgModule({

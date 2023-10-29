@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonComponent } from './pokemon/component/pokemon.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterTestingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

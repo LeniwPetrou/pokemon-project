@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
+import { NavBarComponent } from './main/nav-bar/nav-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { DynamicTableComponent } from './shared/components/dynamic-table/dynamic-table.component';
+import { routes } from './shared/configuration/routing-config';
 
 
 @NgModule({
@@ -21,14 +19,13 @@ import { DynamicTableComponent } from './shared/components/dynamic-table/dynamic
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MatButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatButtonModule,
     MatToolbarModule,
     RouterTestingModule,
-    RouterModule,
-    SharedModule
+    SharedModule,
+    RouterModule.forRoot(routes),
   ],
   exports: [
     SharedModule

@@ -1,1 +1,4 @@
 <button mat-raised-button color="primary" (click)="getPokemons()">Get Me the Pokemoms!</button>
+
+<app-dynamic-table *ngIf="pokemonList$ | async" [pokemonList]="pokemonList$ | async">
+</app-dynamic-table>

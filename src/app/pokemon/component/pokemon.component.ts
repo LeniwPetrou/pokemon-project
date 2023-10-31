@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
 import { AsyncPipe, NgIf } from '@angular/common';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-pokemon',
@@ -16,6 +17,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 export class PokemonComponent implements OnInit {
 
   public pokemonList$?: Observable<any>;
+  public limit = 10;
 
   constructor(
     public pokemonService: PokemonService) { 
@@ -25,7 +27,14 @@ export class PokemonComponent implements OnInit {
   }
 
   getPokemons (){
-    this.pokemonList$ = this.pokemonService.getPokemons()
+    this.pokemonList$ = this.pokemonService.getPokemons(this.limit, this.limit)
+  }
+
+  changePageTable(pageEvent: PageEvent){
+    console.log('pageEvent::', pageEvent);
+    let offset = pageEvent.pageIndex * pageEvent.pageSize;
+    console.log('offset', offset);
+    this.pokemonList$ = this.pokemonService.getPokemons(offset, this.limit)
   }
 
 }

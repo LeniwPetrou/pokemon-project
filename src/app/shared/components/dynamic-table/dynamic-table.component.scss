@@ -1,77 +1,59 @@
-.table-header {
-    font-size: 20px;
-    background-color: #ff4081;
-    padding: 20px 24px 0;
-    margin-top: 40px;
-    height: 50px;
-    text-align: center;
-    color: white;
-  }
-  
-  table {
-    width: 180%;
-  }
-  
-  mat-paginator {
-    width: 80%;
-  }
-  
-  .center {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  tr.mat-header-row {
-    color: black;
-  }
-  
-  .tableHeaderCellDiv { 
-    resize: horizontal;  
-    overflow:hidden;
-  }
-  
-  td.mat-column-star {
-    width: 20px;
-    padding-right: 8px;
-  }
-    
-  th.mat-column-position, td.mat-column-position {
-    padding-left: 8px;
-  }
-  
-  .mat-table-sticky-border-elem-right {
-    border-left: 1px solid #e0e0e0;
-  }
-  
-  .mat-table-sticky-border-elem-left {
-    border-right: 1px solid #e0e0e0;
-  }
-  
-  .material-icons.md-18 { font-size: 18px; }
-  
-  .margin-10 {margin: 10px;}
-  
-  .mat-header-cell {
-    background: white;
-    font-size: 15px;
-    font-weight: 550;
-  }
+table {
+  width: 80% !important;
+}
 
-  .is-empty-cart {
-    font-size: 15px;
-    background-color: #e470a72f;
-    padding: 20px 24px 50px;
-    height: 30px;
-    text-align: center;
-    color: rgba(21, 20, 20, 0.352);
-    margin-bottom: 20px;
-  }
+mat-paginator {
+  margin-top: 20px;
+  width: 80%;
+}
 
-  .details{
-    font-size: 20px;
-    background-color: cadetblue;
-    padding: 20px 24px 40px;
-    height: 30px;
-    text-align: center;
-    color: white;
-  }
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tr.mat-header-row {
+  color: black;
+}
+
+.tableHeaderCellDiv { 
+  resize: horizontal;  
+  overflow:hidden;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+  
+th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}
+
+.mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+
+.margin-10 {margin: 10px;}
+
+.mat-header-cell {
+  background: white;
+  font-size: 15px;
+  font-weight: 550;
+}
+
+.mat-card-filter{
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 69%);
+  font-weight: 400 !important;
+  letter-spacing: 1px;
+  padding: 0px !important;
+}

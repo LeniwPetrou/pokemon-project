@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
   })
-  export class PokemonService {
+  export class HttpService {
   
     baseUrl: string = `${environment.apiBaseUrl}`;
     public _count$: Subject<number> = new Subject();

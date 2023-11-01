@@ -4,7 +4,7 @@ import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 @Injectable({
     providedIn: 'root'
   })
-  export class TableService {
+  export class TableConfigService {
     
     public getColumnConfig(): IColumnConfig {
         return {

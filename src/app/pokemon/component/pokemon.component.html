@@ -2,8 +2,9 @@
     <button mat-raised-button color="primary" (click)="getPokemons()">Get Me the Pokemons</button>
 </div>
 
-<app-dynamic-table *ngIf="pokemonList$ | async"
-                    [pokemonList]="pokemonList$ | async"
-                    [columnConfig] = "columnConfig"
+<app-dynamic-table *ngIf="list$ | async"
+                    [list]="list$ | async"
+                    [columnConfig]="columnConfig"
+                    [hasPagination]="hasPagination"
                     (onChangePageTable)="changePageTable($event)">
 </app-dynamic-table>

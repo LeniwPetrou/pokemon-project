@@ -3,8 +3,9 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { NgFor, NgIf } from '@angular/common';
-import { StoreDataService } from 'src/app/pokemon/services/store-data-service';
+import { StoreDataService } from 'src/app/shared/components/services/store-data-service';
 import { IColumnConfig } from '../../interfaces/column-interface';
+import { isArray } from 'lodash';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -15,9 +16,10 @@ import { IColumnConfig } from '../../interfaces/column-interface';
 })
 export class DynamicTableComponent {
 
-  @Input() pokemonList?: any[];
+  @Input() list?: any[];
   @Input() count?: any;
   @Input() columnConfig!: IColumnConfig;
+  @Input() hasPagination?: boolean;
   @Output() onChangePageTable: EventEmitter<any> = new EventEmitter(); 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
@@ -34,7 +36,8 @@ export class DynamicTableComponent {
   }
 
   ngOnInit(){
-    this.dataSource = new MatTableDataSource<any[]>(this.pokemonList);
+    this.dataSource = new MatTableDataSource<any[]>(this.list);
+    console.log('this.list', this.list);
     console.log(this.columnConfig)
     this.displayedColumns = Object.keys(this.columnConfig);
     console.log(this.displayedColumns);

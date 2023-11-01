@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { PokemonService } from '../services/http-service';
+import { HttpService } from '../services/http-service';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
-import { TableService } from '../services/table-service';
+import { TableConfigService } from '../services/table-config-service';
 import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 
 @Component({
@@ -18,21 +18,22 @@ import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 })
 export class PokemonComponent implements OnInit {
 
-  public pokemonList$?: Observable<any>;
+  public list$?: Observable<any>;
   public columnConfig!: IColumnConfig;
+  public hasPagination: boolean = true;
 
   constructor(
-    public pokemonService: PokemonService,
+    public httpService: HttpService,
     private cdref: ChangeDetectorRef, 
-    private tableService: TableService ) { 
+    private tableConfigService: TableConfigService ) { 
   }
 
   ngOnInit(): void {
-     this.columnConfig = this.tableService.getColumnConfig();
+     this.columnConfig = this.tableConfigService.getColumnConfig();
   }
 
   getPokemons (){
-    this.pokemonList$ = this.pokemonService.getPokemons(10, 10)
+    this.list$ = this.httpService.getPokemons(10, 10)
   }
 
   changePageTable(pageEvent: PageEvent){
@@ -40,7 +41,7 @@ export class PokemonComponent implements OnInit {
     let offset = pageEvent.pageIndex * pageEvent.pageSize;
     let limit = pageEvent.pageSize * pageEvent.pageIndex;
     console.log('limit', limit);
-    this.pokemonList$ = this.pokemonService.getPokemons(offset, limit)
+    this.list$ = this.httpService.getPokemons(offset, limit)
   }
 
   

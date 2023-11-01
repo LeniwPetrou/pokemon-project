@@ -4,5 +4,6 @@
 
 <app-dynamic-table *ngIf="pokemonList$ | async"
                     [pokemonList]="pokemonList$ | async"
+                    [columnConfig] = "columnConfig"
                     (onChangePageTable)="changePageTable($event)">
 </app-dynamic-table>

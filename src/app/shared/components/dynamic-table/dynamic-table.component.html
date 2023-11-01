@@ -1,14 +1,12 @@
 
-<div class="center">
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let element; let i = index"> {{element.name}} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table> 
-</div>
+<table mat-table [dataSource]="dataSource" class="elevated center">
+    <ng-container *ngFor="let columnName of displayedColumns" [matColumnDef]="columnName">
+      <th mat-header-cell *matHeaderCellDef>{{ columnName}}</th>
+      <td mat-cell *matCellDef="let row">{{ row[columnName] }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 
 <mat-paginator 
     class = "center" 

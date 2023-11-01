@@ -1,10 +1,10 @@
 table {
-  width: 80% !important;
+  width: 90% !important;
 }
 
 mat-paginator {
   margin-top: 20px;
-  width: 80%;
+  width: 90%;
 }
 
 .center {
@@ -56,4 +56,12 @@ th.mat-column-position, td.mat-column-position {
   font-weight: 400 !important;
   letter-spacing: 1px;
   padding: 0px !important;
+}
+
+.mdc-data-table__table {
+   min-width: 0% !important; 
+}
+
+.elevated {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }

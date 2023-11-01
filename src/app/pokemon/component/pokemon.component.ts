@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { PokemonService } from '../services/http-service';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
+import { TableService } from '../services/table-service';
+import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 
 @Component({
   selector: 'app-pokemon',
@@ -17,24 +19,35 @@ import { PageEvent } from '@angular/material/paginator';
 export class PokemonComponent implements OnInit {
 
   public pokemonList$?: Observable<any>;
-  public limit = 10;
+  public columnConfig!: IColumnConfig[];
 
   constructor(
-    public pokemonService: PokemonService) { 
+    public pokemonService: PokemonService,
+    private cdref: ChangeDetectorRef, 
+    private tableService: TableService ) { 
   }
 
   ngOnInit(): void {
+     this.columnConfig = this.tableService.getColumnConfig();
   }
 
   getPokemons (){
-    this.pokemonList$ = this.pokemonService.getPokemons(this.limit, this.limit)
+    this.pokemonList$ = this.pokemonService.getPokemons(10, 10)
   }
 
   changePageTable(pageEvent: PageEvent){
     console.log('pageEvent::', pageEvent);
     let offset = pageEvent.pageIndex * pageEvent.pageSize;
-    console.log('offset', offset);
-    this.pokemonList$ = this.pokemonService.getPokemons(offset, this.limit)
+    let limit = pageEvent.pageSize * pageEvent.pageIndex;
+    console.log('limit', limit);
+    this.pokemonList$ = this.pokemonService.getPokemons(offset, limit)
   }
+
+  
+  // ngAfterContentChecked() {
+
+  //   this.cdref.detectChanges();
+
+  // }
 
 }

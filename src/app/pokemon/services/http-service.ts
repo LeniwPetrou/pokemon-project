@@ -28,7 +28,7 @@ import { environment } from 'src/environments/environment';
       //   )
       // )
       this._count$.next(0);
-      return this.http.get<any[]>(`${this.baseUrl}v2/pokemon?offset=${offset}&limit=${offset}`).pipe(
+      return this.http.get<any[]>(`${this.baseUrl}v2/pokemon?offset=${offset}&limit=${limit}`).pipe(
         shareReplay(1),
         // tap((response: any) => {
         //   this._count$.next(response.count);

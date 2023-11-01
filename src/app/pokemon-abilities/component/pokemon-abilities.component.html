@@ -1,6 +1,4 @@
-<div class="center-align">
-    <button mat-raised-button color="primary" (click)="getApiCall()">Get Me the Pokemons</button>
-</div>
+<app-search (onEmitValue)="getEmittedValue($event)"></app-search>
 
 <app-dynamic-table *ngIf="list$ | async"
                     [list]="list$ | async"

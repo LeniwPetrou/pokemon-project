@@ -8,19 +8,21 @@ import { PageEvent } from '@angular/material/paginator';
 import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 import { HttpService } from '../services/http-service';
 import { TableConfigService } from '../services/table-config-service';
+import { SearchComponent } from 'src/app/shared/components/search/search.component';
 
 @Component({
   selector: 'app-pokemon-abilities',
   templateUrl: './pokemon-abilities.component.html',
   styleUrls: ['./pokemon-abilities.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf]
+  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent]
 })
 export class PokemonAbilitiesComponent {
 
   public list$?: Observable<any>;
   public columnConfig!: IColumnConfig;
   public hasPagination: boolean = false;
+  public formVal!: string;
 
   constructor(
     public httpService: HttpService,
@@ -32,6 +34,12 @@ export class PokemonAbilitiesComponent {
   }
 
   getApiCall (){
-    this.list$ = this.httpService.getApiCall('stench')
+    this.list$ = this.httpService.getApiCall(this.formVal)
+  }
+
+  getEmittedValue(formValue: any){
+    this.formVal = formValue;
+    let val = Object.values(this.formVal);
+    this.list$ = this.httpService.getApiCall(val[0])
   }
 }

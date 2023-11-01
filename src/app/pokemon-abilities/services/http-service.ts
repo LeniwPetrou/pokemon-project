@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
       return this.http.get<any[]>(`${this.baseUrl}v2/ability/${name}/`).pipe(
         shareReplay(1),
         map((response: any) => {
+          console.log(response)
           let results$ = response.effect_entries[1];
           let list$ = [];
           list$.push(results$);
@@ -27,6 +28,18 @@ import { environment } from 'src/environments/environment';
         )
       )
 
+    }
+
+    getAbilities(): Observable<any>{
+      return this.http.get<any[]>(`${this.baseUrl}v2/ability/`).pipe(
+        shareReplay(1),
+        map((response: any) => {
+          console.log(response)
+          let results$ = response.results;
+          return results$;
+        }
+        )
+      )
     }
   }
   

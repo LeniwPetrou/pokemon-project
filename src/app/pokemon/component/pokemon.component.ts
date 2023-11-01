@@ -19,7 +19,7 @@ import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 export class PokemonComponent implements OnInit {
 
   public pokemonList$?: Observable<any>;
-  public columnConfig!: IColumnConfig[];
+  public columnConfig!: IColumnConfig;
 
   constructor(
     public pokemonService: PokemonService,

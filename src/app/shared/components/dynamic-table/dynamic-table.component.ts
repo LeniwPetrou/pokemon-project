@@ -17,7 +17,7 @@ export class DynamicTableComponent {
 
   @Input() pokemonList?: any[];
   @Input() count?: any;
-  @Input() columnConfig!: IColumnConfig[];
+  @Input() columnConfig!: IColumnConfig;
   @Output() onChangePageTable: EventEmitter<any> = new EventEmitter(); 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
@@ -35,7 +35,9 @@ export class DynamicTableComponent {
 
   ngOnInit(){
     this.dataSource = new MatTableDataSource<any[]>(this.pokemonList);
-    this.displayedColumns = Object.values(this.columnConfig[0]);
+    console.log(this.columnConfig)
+    this.displayedColumns = Object.keys(this.columnConfig);
+    console.log(this.displayedColumns);
   }
 
   ngAfterViewInit(){

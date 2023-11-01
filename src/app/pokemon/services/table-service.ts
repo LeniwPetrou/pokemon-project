@@ -6,12 +6,13 @@ import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
   })
   export class TableService {
     
-    public getColumnConfig(): IColumnConfig[] {
-        return [
-          {
-          title: 'name'
+    public getColumnConfig(): IColumnConfig {
+        return {
+          name: {
+            key: 'name',
+            title: 'Name'
         }
-      ]
+      }
     }
   }
   

@@ -1,3 +1,6 @@
 export interface IColumnConfig {
-    title: string;
+    [key: string]:{
+        key: string;
+        title: string;
+    }
 }

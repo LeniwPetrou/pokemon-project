@@ -33,7 +33,7 @@ export class PokemonComponent implements OnInit {
   }
 
   getPokemons (){
-    this.list$ = this.httpService.getPokemons(10, 10)
+    this.list$ = this.httpService.search(10, 10)
   }
 
   changePageTable(pageEvent: PageEvent){
@@ -41,14 +41,6 @@ export class PokemonComponent implements OnInit {
     let offset = pageEvent.pageIndex * pageEvent.pageSize;
     let limit = pageEvent.pageSize * pageEvent.pageIndex;
     console.log('limit', limit);
-    this.list$ = this.httpService.getPokemons(offset, limit)
+    this.list$ = this.httpService.search(offset, limit)
   }
-
-  
-  // ngAfterContentChecked() {
-
-  //   this.cdref.detectChanges();
-
-  // }
-
 }

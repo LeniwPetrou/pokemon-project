@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
       private http: HttpClient
     ) { }
 
-    getPokemons(offset: number, limit: number): Observable<any>{
+    search(offset: number, limit: number): Observable<any>{
       this._count$.next(0);
       return this.http.get<any[]>(`${this.baseUrl}v2/pokemon?offset=${offset}&limit=${limit}`).pipe(
         shareReplay(1),

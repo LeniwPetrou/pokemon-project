@@ -33,13 +33,9 @@ export class PokemonAbilitiesComponent {
      this.columnConfig = this.tableConfigService.getColumnConfig();
   }
 
-  getApiCall (){
-    this.list$ = this.httpService.getApiCall(this.formVal)
-  }
-
   getEmittedValue(formValue: any){
     this.formVal = formValue;
     let val = Object.values(this.formVal);
-    this.list$ = this.httpService.getApiCall(val[0])
+    this.list$ = this.httpService.searchByName(val[0])
   }
 }

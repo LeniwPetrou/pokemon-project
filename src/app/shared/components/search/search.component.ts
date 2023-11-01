@@ -24,13 +24,13 @@ export class SearchComponent {
   }
 
     ngOnInit(){
-      this.list$ = this.httpService.getAbilities();
+      this.list$ = this.httpService.search();
       this.form = new FormGroup({
         name: new FormControl('', Validators.required)
       });
     }
 
-    getApiCall(){
+    search(){
       this.onEmitValue.emit(this.form.value);
     }
     

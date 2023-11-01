@@ -27,7 +27,7 @@ export class DynamicTableComponent {
   public dataSource = new MatTableDataSource<any[]>();
   public pageEvent?: any;
   public pageSize?: number = 10;
-  public pageIndex?: number = 0;
+  public pageIndex: number = 0;
   public length?: number = 0;
 
   public pageSizeOptions = [10, 20, 50];
@@ -37,10 +37,7 @@ export class DynamicTableComponent {
 
   ngOnInit(){
     this.dataSource = new MatTableDataSource<any[]>(this.list);
-    console.log('this.list', this.list);
-    console.log(this.columnConfig)
     this.displayedColumns = Object.keys(this.columnConfig);
-    console.log(this.displayedColumns);
   }
 
   ngAfterViewInit(){

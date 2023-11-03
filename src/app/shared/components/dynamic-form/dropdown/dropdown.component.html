@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+    <mat-form-field appearence="outline">
+        <mat-label>{{question.label}}</mat-label>
+        <mat-select [formControlName]="question.key">
+            <mat-option *ngFor="let option of (question.options | async)" [value]="option.value">
+            {{option.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>            
+</form>
+

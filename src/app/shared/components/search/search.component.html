@@ -1,15 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <form [formGroup]="form">
-            <mat-form-field appearence="outline">
-                <mat-label>Pokemons</mat-label>
-                <mat-select formControlName="name">
-                    <mat-option *ngFor="let pokemon of list$ | async" [value]="pokemon.name">
-                    {{pokemon.name}}
-                    </mat-option>
-                </mat-select>
-                </mat-form-field>            
-            <button mat-raised-button color="primary" (click)="search()" style="margin:10px;">Submit</button>
-        </form>
+        <app-dynamic-form [form]="form" [questions]="questions"></app-dynamic-form>
+        <button mat-raised-button color="primary" (click)="search()" style="margin:10px;">Submit</button>
     </mat-card-content>
 </mat-card>

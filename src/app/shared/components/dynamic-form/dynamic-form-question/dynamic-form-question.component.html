@@ -1,0 +1,4 @@
+<div [ngSwitch]="question.controlType">
+    <app-text *ngSwitchCase="'textbox'" [question]="question" [form]="form"></app-text>
+    <app-dropdown *ngSwitchCase="'dropdown'" [question]="question" [form]="form"></app-dropdown>
+  </div>

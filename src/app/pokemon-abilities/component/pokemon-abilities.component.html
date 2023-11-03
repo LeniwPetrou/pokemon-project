@@ -1,4 +1,5 @@
-<app-search (onEmitValue)="getEmittedValue($event)"></app-search>
+<app-search [questions]="questions | async"
+(onEmitValue)="getEmittedValue($event)"></app-search>
 
 <app-dynamic-table *ngIf="list$ | async"
                     [list]="list$ | async"

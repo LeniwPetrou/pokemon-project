@@ -1,14 +1,15 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { PageEvent } from '@angular/material/paginator';
 import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 import { HttpService } from '../services/http-service';
 import { TableConfigService } from '../services/table-config-service';
 import { SearchComponent } from 'src/app/shared/components/search/search.component';
+import { QuestionService } from '../services/question-service';
+import { QuestionBase } from 'src/app/shared/types/control-type';
 
 @Component({
   selector: 'app-pokemon-abilities',
@@ -23,14 +24,17 @@ export class PokemonAbilitiesComponent {
   public columnConfig!: IColumnConfig;
   public hasPagination: boolean = false;
   public formVal!: string;
+  public questions?: Observable<QuestionBase<string>[]>;
 
   constructor(
     public httpService: HttpService,
-    private tableConfigService: TableConfigService) { 
+    private tableConfigService: TableConfigService,
+    private questionService: QuestionService) { 
   }
 
   ngOnInit(): void {
-     this.columnConfig = this.tableConfigService.getColumnConfig();
+    this.columnConfig = this.tableConfigService.getColumnConfig();
+    this.questions = this.questionService.getQuestions();
   }
 
   getEmittedValue(formValue: any){

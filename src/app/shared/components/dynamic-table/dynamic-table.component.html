@@ -1,18 +1,39 @@
-
-<table mat-table [dataSource]="dataSource" class="elevated center">
-    <ng-container *ngFor="let column of displayedColumns; let i=index" [matColumnDef]="column">
-      <th mat-header-cell *matHeaderCellDef>{{ columnConfig[column].title }}</th>
-      <td mat-cell *matCellDef="let row">{{ row[column] }}</td>
+<div class="table-class center">
+  <div class="example-header">
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Pick me...">
+    </mat-form-field>
+  </div>
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="elevated">
+      <ng-container *ngFor="let column of displayedColumns; let i=index" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ columnConfig[column].title }}</th>
+        <td mat-cell *matCellDef="let row">{{ row[column] }}</td>
+      </ng-container>
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+        </button>
+        </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">    
+            <div class="example-element-detail"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <app-expanded-element *ngIf="element == expandedElement" [element]="element"></app-expanded-element>
+            </div>
+        </td>
+    </ng-container>
 
-<mat-paginator *ngIf="hasPagination"
-    class = "center" 
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions" 
-    [showFirstLastButtons]="true"
-    [length]="length"
-    (page)="onChangePage($event)">
-</mat-paginator>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</div>

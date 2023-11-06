@@ -1,0 +1,12 @@
+
+<div class="flex-container" *ngIf="results$ | async as data">
+    <img class= "element-class" src="{{ data.img }}" width="120" height="130">
+    <div class="element-class" *ngFor="let ability of data.abilities">
+        <div>
+        {{ ability.ability.name }}
+        </div>
+    </div>
+    <div class="element-class">
+        {{ data.experience }}
+    </div>
+</div> 

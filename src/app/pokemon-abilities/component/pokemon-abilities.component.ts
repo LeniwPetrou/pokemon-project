@@ -22,7 +22,6 @@ export class PokemonAbilitiesComponent {
 
   public list$?: Observable<any>;
   public columnConfig!: IColumnConfig;
-  public hasPagination: boolean = false;
   public formVal!: string;
   public questions?: Observable<QuestionBase<string>[]>;
 

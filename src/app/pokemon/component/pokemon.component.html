@@ -4,7 +4,5 @@
 
 <app-dynamic-table *ngIf="list$ | async"
                     [list]="list$ | async"
-                    [columnConfig]="columnConfig"
-                    [hasPagination]="hasPagination"
-                    (onChangePageTable)="changePageTable($event)">
-</app-dynamic-table>
+                    [columnConfig]="columnConfig">
+                </app-dynamic-table>

@@ -1,0 +1,11 @@
+.flex-container {
+    display: inline-flex;
+    gap: 20px;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: fit-content;
+}
+
+.element-class {
+    text-align: center;
+}

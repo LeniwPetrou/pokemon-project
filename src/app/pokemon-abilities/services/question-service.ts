@@ -19,13 +19,12 @@ export class QuestionService {
     const questions: QuestionBase<string>[] = [
 
       new Dropdown({
-        key: 'pokemon',
-        label: 'Pokemons',
+        key: 'abilities',
+        label: 'Abilities',
         options: this.sharedService.searchAbilities(),
-        order: 3
+        order: 1
       })
     ];
-
     return of(questions.sort((a, b) => a.order - b.order));
   }
 }

@@ -8,24 +8,26 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
 import { TableConfigService } from '../services/table-config-service';
 import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
+import { SearchComponent } from 'src/app/shared/components/search/search.component';
+import { QuestionBase } from 'src/app/shared/types/control-type';
 
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf]
+  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent]
 })
 export class PokemonComponent implements OnInit {
 
   public list$?: Observable<any>;
-  public columnConfig!: IColumnConfig;
-  public hasPagination: boolean = true;
+  public columnConfig!: IColumnConfig; 
+  public formVal!: string;
+  public questions!: Observable<QuestionBase<string>[]>;
 
   constructor(
     public httpService: HttpService,
-    private cdref: ChangeDetectorRef, 
-    private tableConfigService: TableConfigService ) { 
+    private tableConfigService: TableConfigService) { 
   }
 
   ngOnInit(): void {
@@ -33,14 +35,12 @@ export class PokemonComponent implements OnInit {
   }
 
   getPokemons (){
-    this.list$ = this.httpService.search(10, 10)
+    this.list$ = this.httpService.search(10, 2000)
   }
 
-  changePageTable(pageEvent: PageEvent){
-    console.log('pageEvent::', pageEvent);
-    let offset = pageEvent.pageIndex * pageEvent.pageSize;
-    let limit = pageEvent.pageSize * pageEvent.pageIndex;
-    console.log('limit', limit);
-    this.list$ = this.httpService.search(offset, limit)
+  getEmittedValue(formValue: any){
+    this.formVal = formValue;
+    let val = Object.values(this.formVal);
+    this.list$ = this.httpService.searchByName(val[0])
   }
 }

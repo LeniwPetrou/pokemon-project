@@ -1,36 +1,40 @@
-import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, Input } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { NgFor, NgIf } from '@angular/common';
 import { StoreDataService } from 'src/app/shared/components/services/store-data-service';
 import { IColumnConfig } from '../../interfaces/column-interface';
-import { isArray } from 'lodash';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { ExpandedElementComponent } from '../expanded-element/expanded-element.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-dynamic-table',
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, NgIf, MatPaginatorModule, NgFor]
+  imports: [MatTableModule, NgIf, MatPaginatorModule, NgFor, MatIconModule, MatExpansionModule, MatButtonModule, ExpandedElementComponent, MatFormFieldModule, MatInputModule],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class DynamicTableComponent {
 
   @Input() list?: any[];
-  @Input() count?: any;
   @Input() columnConfig!: IColumnConfig;
-  @Input() hasPagination?: boolean;
-  @Output() onChangePageTable: EventEmitter<any> = new EventEmitter(); 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort?: MatSort;
   public displayedColumns: string[] = [];
   public dataSource = new MatTableDataSource<any[]>();
-  public pageEvent?: any;
-  public pageSize?: number = 10;
-  public pageIndex: number = 0;
-  public length?: number = 0;
 
-  public pageSizeOptions = [10, 20, 50];
+  public columnsToDisplayWithExpand!: any[];
+  public expandedElement?: any;
 
   constructor(public storeDataService: StoreDataService){
   }
@@ -38,20 +42,12 @@ export class DynamicTableComponent {
   ngOnInit(){
     this.dataSource = new MatTableDataSource<any[]>(this.list);
     this.displayedColumns = Object.keys(this.columnConfig);
+    this.columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   }
 
-  ngAfterViewInit(){
-    this.storeDataService.pageSize.subscribe(data => this.pageSize = data);
-    this.storeDataService.pageIndex.subscribe(data => this.pageIndex = data);
-    this.length = 1000;
-    this.paginator.pageIndex = this.pageIndex;
-    this.paginator.pageSize = this.pageSize;
-    this.dataSource.paginator = this.paginator;
+  applyFilter(filterValue: any) {
+    filterValue = filterValue.target?.value.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
-
-  onChangePage(pageEvent:PageEvent) {
-    this.storeDataService.setPageOptions(pageEvent);
-    this.onChangePageTable?.emit(pageEvent);
-    
-  } 
 }

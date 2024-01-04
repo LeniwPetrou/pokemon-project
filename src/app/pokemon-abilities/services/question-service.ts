@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { QuestionBase } from 'src/app/shared/types/control-type';
 import { Dropdown } from 'src/app/shared/types/question-base copy';
-import { SharedService } from 'src/app/shared/components/services/shared-service';
+import { SharedService } from 'src/app/shared/services/shared-service';
 
 @Injectable({ 
   providedIn: 'root'

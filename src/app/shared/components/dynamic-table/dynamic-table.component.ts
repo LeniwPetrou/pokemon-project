@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, ChangeDetectorRef } from '@a
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { NgFor, NgIf } from '@angular/common';
-import { StoreDataService } from 'src/app/shared/components/services/store-data-service';
+import { StoreDataService } from 'src/app/shared/services/store-data-service';
 import { IColumnConfig } from '../../interfaces/column-interface';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import {MatIconModule} from '@angular/material/icon';

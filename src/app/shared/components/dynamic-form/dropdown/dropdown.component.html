@@ -1,12 +1,6 @@
 <form [formGroup]="form">
     <mat-form-field appearence="outline">
         <mat-label>{{question.label}}</mat-label>
-        <!-- <mat-select [formControlName]="question.key">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let option of (question.options | async)" [value]="option.value">
-            {{option.value}}
-            </mat-option>
-        </mat-select> -->
             <mat-select [formControlName]="question.key" #singleSelect>
               <mat-option>
                 <ngx-mat-select-search [formControl]="optionFilterCtrl" placeholderLabel="Search..." noEntriesFoundLabel="'no matching option found'"></ngx-mat-select-search>

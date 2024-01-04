@@ -15,13 +15,13 @@ import { TableScrollingViewportComponent } from 'src/app/shared/components/table
 // import { BackgroundService } from 'src/app/shared/services/background-image-service';
 
 @Component({
-  selector: 'app-pokemon',
-  templateUrl: './pokemon.component.html',
-  styleUrls: ['./pokemon.component.scss'],
+  selector: 'app-pokemon-species',
+  templateUrl: './pokemon-species.component.html',
+  styleUrls: ['./pokemon-species.component.scss'],
   standalone: true,
   imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent, TableScrollingViewportComponent]
 })
-export class PokemonComponent implements OnInit {
+export class PokemonSpeciesComponent implements OnInit {
 
   public list$?: Observable<any>;
   public columnConfig!: IColumnConfig; 
@@ -42,7 +42,7 @@ export class PokemonComponent implements OnInit {
   ngOnInit(): void {
     this.columnConfig = this.tableConfigService.getColumnConfig();
     // this.backgroundService.setBackground(this.renderer, 'https://cdn.wallpapersafari.com/14/63/ZtyKPO.jpg')
-    this.setBackgroundImage('https://cdn.wallpapersafari.com/14/63/ZtyKPO.jpg');
+    this.setBackgroundImage('https://wallpapercave.com/wp/wp2763494.jpg');
   }
   
   private setBackgroundImage(imagePath: string): void {

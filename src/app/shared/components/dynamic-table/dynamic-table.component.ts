@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ChangeDetectorRef } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { NgFor, NgIf } from '@angular/common';
@@ -25,10 +25,14 @@ import { MatInputModule } from '@angular/material/input';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicTableComponent {
 
-  @Input() list?: any[];
+  @Input() set list (list: any[])  {
+    this.loadData(list)
+    console.log('listt', list)
+  }
   @Input() columnConfig!: IColumnConfig;
   public displayedColumns: string[] = [];
   public dataSource = new MatTableDataSource<any[]>();
@@ -36,13 +40,21 @@ export class DynamicTableComponent {
   public columnsToDisplayWithExpand!: any[];
   public expandedElement?: any;
 
-  constructor(public storeDataService: StoreDataService){
+  constructor(public storeDataService: StoreDataService,
+    private cdr: ChangeDetectorRef){
+  }
+
+  ngAfterViewInit(){
+    this.cdr.detectChanges();
   }
 
   ngOnInit(){
-    this.dataSource = new MatTableDataSource<any[]>(this.list);
-    this.displayedColumns = Object.keys(this.columnConfig);
+    this.displayedColumns = Object?.keys(this.columnConfig);
     this.columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+  }
+
+  loadData(list: any[]){
+    this.dataSource = new MatTableDataSource<any[]>(list);
   }
 
   applyFilter(filterValue: any) {

@@ -1,8 +1,11 @@
 <div class="center-align">
     <button mat-raised-button color="primary" (click)="getPokemons()">Get Me the Pokemons</button>
 </div>
-
-<app-dynamic-table *ngIf="list$ | async"
-                    [list]="list$ | async"
+<app-table-scrolling-viewport [itemSize]="50"
+                          [totalItems]="(list$ | async)?.length"
+                          (itemsRangeChange)="updateTableSlice($event)">
+    <app-dynamic-table *ngIf="listSlice$ | async"
+                    [list]="listSlice$ | async"
                     [columnConfig]="columnConfig">
-                </app-dynamic-table>
+    </app-dynamic-table>
+</app-table-scrolling-viewport>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { Observable } from 'rxjs';
@@ -28,12 +28,18 @@ export class PokemonAbilitiesComponent {
   constructor(
     public httpService: HttpService,
     private tableConfigService: TableConfigService,
-    private questionService: QuestionService) { 
+    private questionService: QuestionService,
+    private renderer: Renderer2) { 
   }
 
   ngOnInit(): void {
     this.columnConfig = this.tableConfigService.getColumnConfig();
     this.questions = this.questionService.getQuestions();
+    this.setBackgroundImage('https://images2.alphacoders.com/963/963354.png');
+  }
+  
+  private setBackgroundImage(imagePath: string): void {
+    this.renderer.setStyle(document.body, 'background-image', `url(${imagePath})`);
   }
 
   getEmittedValue(formValue: any){

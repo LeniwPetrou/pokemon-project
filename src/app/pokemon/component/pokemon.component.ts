@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { HttpService } from '../services/http-service';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -32,11 +32,17 @@ export class PokemonComponent implements OnInit {
 
   constructor(
     public httpService: HttpService,
-    private tableConfigService: TableConfigService) { 
+    private tableConfigService: TableConfigService,
+    private renderer: Renderer2) { 
   }
 
   ngOnInit(): void {
-     this.columnConfig = this.tableConfigService.getColumnConfig();
+    this.columnConfig = this.tableConfigService.getColumnConfig();
+    this.setBackgroundImage('https://cdn.wallpapersafari.com/14/63/ZtyKPO.jpg');
+  }
+  
+  private setBackgroundImage(imagePath: string): void {
+    this.renderer.setStyle(document.body, 'background-image', `url(${imagePath})`);
   }
 
   getPokemons (){

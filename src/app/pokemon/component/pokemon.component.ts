@@ -51,7 +51,6 @@ export class PokemonComponent implements OnInit {
   }
   
   updateTableSlice(range: ListRange) {
-    console.log('range::', range);
     this.range = range;
     this.updateListSlice();
   }

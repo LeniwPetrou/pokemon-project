@@ -1,7 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { QuestionControlService } from 'src/app/shared/services/question-control.service';
 import { QuestionBase } from 'src/app/shared/types/control-type';
 import { DynamicFormQuestionComponent } from '../dynamic-form-question/dynamic-form-question.component';
 
@@ -15,8 +14,4 @@ import { DynamicFormQuestionComponent } from '../dynamic-form-question/dynamic-f
 export class DynamicFormComponent {
   @Input() questions: QuestionBase<string>[] | null = [];
   @Input() form!: FormGroup;
-
-  ngOnInit(){
-    console.log('questions::', this.questions);
-  }
 }

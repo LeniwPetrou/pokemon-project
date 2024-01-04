@@ -2,5 +2,6 @@
     <mat-form-field appearance="outline">
         <mat-label>{{question.label}}</mat-label>
         <input matInput [formControlName]="question.key">
+        <mat-error *ngIf="!isValid">This field is required!</mat-error>
       </mat-form-field>
 </form> 

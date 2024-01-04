@@ -12,11 +12,10 @@ import { environment } from 'src/environments/environment';
 
     constructor(private http: HttpClient) { }
 
-    searchAbilities(): Observable<any>{
-      return this.http.get<any[]>(`${this.baseUrl}v2/ability/`).pipe(
+    searchAbilities(offset: number, limit: number): Observable<any>{
+      return this.http.get<any[]>(`${this.baseUrl}v2/ability?offset=${offset}&limit=${limit}`).pipe(
         shareReplay(1),
         map((response: any) => {
-          console.log(response)
           let results$ = response.results.map((element:any) => {
              return {
               'key': element.name,

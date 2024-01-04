@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import { of } from 'rxjs';
 import { QuestionBase } from 'src/app/shared/types/control-type';
 import { Dropdown } from 'src/app/shared/types/question-base copy';
-import { HttpService } from './http-service';
 import { SharedService } from 'src/app/shared/components/services/shared-service';
 
 @Injectable({ 
@@ -21,7 +19,8 @@ export class QuestionService {
       new Dropdown({
         key: 'abilities',
         label: 'Abilities',
-        options: this.sharedService.searchAbilities(),
+        options: this.sharedService.searchAbilities(10, 2000),
+        required: true,
         order: 1
       })
     ];

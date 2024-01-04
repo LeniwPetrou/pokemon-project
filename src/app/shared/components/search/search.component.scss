@@ -5,3 +5,10 @@ mat-card {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

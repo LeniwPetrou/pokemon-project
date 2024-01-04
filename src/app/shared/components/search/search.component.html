@@ -1,6 +1,8 @@
 <mat-card>
     <mat-card-content>
         <app-dynamic-form [form]="form" [questions]="questions"></app-dynamic-form>
-        <button mat-raised-button color="primary" (click)="search()" style="margin:10px;">Submit</button>
+        <div class="container">
+            <button mat-raised-button color="primary" (click)="search()">Submit</button>
+        </div>
     </mat-card-content>
 </mat-card>

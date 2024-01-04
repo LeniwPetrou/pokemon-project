@@ -31,9 +31,9 @@ export class DynamicTableComponent {
 
   @Input() set list (list: any[])  {
     this.loadData(list)
-    console.log('listt', list)
   }
   @Input() columnConfig!: IColumnConfig;
+  @Input() expand?: boolean;
   public displayedColumns: string[] = [];
   public dataSource = new MatTableDataSource<any[]>();
 
@@ -50,7 +50,7 @@ export class DynamicTableComponent {
 
   ngOnInit(){
     this.displayedColumns = Object?.keys(this.columnConfig);
-    this.columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+    this.columnsToDisplayWithExpand = this.expand ? [...this.displayedColumns, 'expand'] : [...this.displayedColumns];
   }
 
   loadData(list: any[]){

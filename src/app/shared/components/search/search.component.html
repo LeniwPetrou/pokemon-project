@@ -2,7 +2,10 @@
     <mat-card-content>
         <app-dynamic-form [form]="form" [questions]="questions"></app-dynamic-form>
         <div class="container">
-            <button mat-raised-button color="accent" (click)="search()" [disabled]="!form.valid">Get me the effect!</button>
+            <button *ngFor="let action of actionsConfig" mat-raised-button color="{{action.color}}" (click)="search(action)">
+                <mat-icon>{{action.icon}}</mat-icon>
+                {{action.title}}
+            </button>
         </div>
     </mat-card-content>
 </mat-card>

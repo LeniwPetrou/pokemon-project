@@ -1,2 +1,2 @@
-<app-search [questions]="questions | async" (onEmitValue)="getEmittedValue($event)"></app-search>
+<app-search [questions]="questions | async" (onEmitValue)="getEmittedValue($event)" [actionsConfig]="actionsConfig"></app-search>
 <app-dynamic-table *ngIf="list$ | async" [list]="list$ | async" [columnConfig]="columnConfig" [expand]="false"></app-dynamic-table>

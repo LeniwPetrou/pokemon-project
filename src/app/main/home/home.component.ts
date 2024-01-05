@@ -1,4 +1,5 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
+import { BackgroundService } from 'src/app/shared/services/background-image-service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,9 @@ import { Component, Renderer2 } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private backgroundService: BackgroundService) {}
 
   ngOnInit() {
-    this.setBackgroundImage('https://external-preview.redd.it/aX_ICsH1TefshXNcBBSQ92YRwFstM3rHMzrUfMYGvvM.jpg?auto=webp&s=09c65d185975ce69c5c5a632166d0456b0106293');
-  }
-
-  private setBackgroundImage(imagePath: string): void {
-    this.renderer.setStyle(document.body, 'background-image', `url(${imagePath})`);
+    this.backgroundService.setBackground('https://external-preview.redd.it/aX_ICsH1TefshXNcBBSQ92YRwFstM3rHMzrUfMYGvvM.jpg?auto=webp&s=09c65d185975ce69c5c5a632166d0456b0106293');
   }
 }

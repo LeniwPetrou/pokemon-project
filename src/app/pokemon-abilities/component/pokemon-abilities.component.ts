@@ -10,6 +10,7 @@ import { TableConfigService } from '../services/table-config-service';
 import { SearchComponent } from 'src/app/shared/components/search/search.component';
 import { QuestionService } from '../services/question-service';
 import { QuestionBase } from 'src/app/shared/types/control-type';
+import { BackgroundService } from 'src/app/shared/services/background-image-service';
 
 @Component({
   selector: 'app-pokemon-abilities',
@@ -29,17 +30,13 @@ export class PokemonAbilitiesComponent {
     public httpService: HttpService,
     private tableConfigService: TableConfigService,
     private questionService: QuestionService,
-    private renderer: Renderer2) { 
+    private backgroundService: BackgroundService) { 
   }
 
   ngOnInit(): void {
     this.columnConfig = this.tableConfigService.getColumnConfig();
     this.questions = this.questionService.getQuestions();
-    this.setBackgroundImage('https://images2.alphacoders.com/963/963354.png');
-  }
-  
-  private setBackgroundImage(imagePath: string): void {
-    this.renderer.setStyle(document.body, 'background-image', `url(${imagePath})`);
+    this.backgroundService.setBackground('https://images2.alphacoders.com/963/963354.png');
   }
 
   getEmittedValue(formValue: any){

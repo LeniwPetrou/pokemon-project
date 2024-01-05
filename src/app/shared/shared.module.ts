@@ -11,13 +11,6 @@ import { LoaderInterceptor } from './services/interceptor-service';
   ],
   imports: [
     MatButtonModule
-  ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: LoaderInterceptor,
-  //     multi: true
-  //   }],
-  bootstrap: []
+  ]
 })
 export class SharedModule { }

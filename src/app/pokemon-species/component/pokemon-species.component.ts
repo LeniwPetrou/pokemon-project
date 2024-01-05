@@ -12,7 +12,7 @@ import { SearchComponent } from 'src/app/shared/components/search/search.compone
 import { QuestionBase } from 'src/app/shared/types/control-type';
 import { ListRange } from '@angular/cdk/collections';
 import { TableScrollingViewportComponent } from 'src/app/shared/components/table-scrolling-viewport/table-scrolling-viewport.component';
-// import { BackgroundService } from 'src/app/shared/services/background-image-service';
+import { BackgroundService } from 'src/app/shared/services/background-image-service';
 
 @Component({
   selector: 'app-pokemon-species',
@@ -34,21 +34,15 @@ export class PokemonSpeciesComponent implements OnInit {
   constructor(
     public httpService: HttpService,
     private tableConfigService: TableConfigService,
-    private renderer: Renderer2,
-    // private backgroundService: BackgroundService
+    private backgroundService: BackgroundService
     ) { 
   }
 
   ngOnInit(): void {
     this.columnConfig = this.tableConfigService.getColumnConfig();
-    // this.backgroundService.setBackground(this.renderer, 'https://cdn.wallpapersafari.com/14/63/ZtyKPO.jpg')
-    this.setBackgroundImage('https://wallpapercave.com/wp/wp2763494.jpg');
+    this.backgroundService.setBackground('https://wallpapercave.com/wp/wp2763494.jpg');
   }
   
-  private setBackgroundImage(imagePath: string): void {
-    this.renderer.setStyle(document.body, 'background-image', `url(${imagePath})`);
-  }
-
   getPokemons (){
     this.list$ = this.httpService.search(10, 2000)
     this.updateListSlice();

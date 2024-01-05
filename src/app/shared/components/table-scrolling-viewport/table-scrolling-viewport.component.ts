@@ -1,13 +1,14 @@
 import { ListRange } from '@angular/cdk/collections';
-import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, forwardRef } from '@angular/core';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-table-scrolling-viewport',
   templateUrl: './table-scrolling-viewport.component.html',
   styleUrls: ['./table-scrolling-viewport.component.scss'],
   standalone: true,
-  imports: [ScrollingModule]
+  imports: [forwardRef(() => SharedModule)]
 })
 export class TableScrollingViewportComponent implements OnInit, OnChanges {
 

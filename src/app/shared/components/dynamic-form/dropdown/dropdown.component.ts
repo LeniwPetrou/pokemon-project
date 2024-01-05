@@ -1,20 +1,17 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { Component, Input, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { Component, Input, ViewChild, forwardRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatSelect } from '@angular/material/select';
 import { QuestionBase } from 'src/app/shared/types/control-type';
-import { MatInputModule } from "@angular/material/input";
 import { ReplaySubject, Subject, take, takeUntil } from 'rxjs';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   standalone: true,
-  imports: [MatSelectModule, AsyncPipe, NgFor,  FormsModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, NgIf, NgxMatSelectSearchModule]
+  imports: [forwardRef(() => SharedModule), AsyncPipe, NgFor, NgIf]
 })
 
 export class DropdownComponent {

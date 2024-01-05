@@ -1,25 +1,21 @@
 import { AsyncPipe, NgFor } from '@angular/common';
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { Component, Output, EventEmitter, Input, forwardRef } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { HttpService } from 'src/app/pokemon-abilities/services/http-service';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form/dynamic-form.component';
 import { QuestionControlService } from '../../services/question-control.service';
 import { QuestionBase } from '../../types/control-type';
-import { MatIconModule } from '@angular/material/icon';
 import { IActionConfig } from '../../interfaces/actions-interface';
 import { ButtonsComponent } from '../buttons/buttons.component';
 import { Actions } from '../../constants/actions';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   standalone: true,
-  imports: [MatCardModule, MatSelectModule, AsyncPipe, NgFor,  FormsModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, DynamicFormComponent, MatIconModule, ButtonsComponent]
+  imports: [forwardRef(() => SharedModule), AsyncPipe, NgFor, DynamicFormComponent, ButtonsComponent]
 })
 export class SearchComponent {
 

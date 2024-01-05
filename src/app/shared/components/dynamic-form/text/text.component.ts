@@ -1,17 +1,15 @@
-import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { Component, Input, forwardRef } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { QuestionBase } from 'src/app/shared/types/control-type';
-import { MatInputModule } from "@angular/material/input";
 import { NgIf } from '@angular/common';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   selector: 'app-text',
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.scss'],
   standalone: true, 
-  imports: [FormsModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, NgIf]
+  imports: [forwardRef(() => SharedModule), NgIf]
 })
 export class TextComponent {
 

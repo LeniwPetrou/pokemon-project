@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, forkJoin, map, of, shareReplay, switchMap, tap } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

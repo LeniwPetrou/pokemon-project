@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Renderer2, forwardRef } from '@angular/core';
 import { HttpService } from '../services/http-service';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -19,7 +19,7 @@ import { BackgroundService } from 'src/app/shared/services/background-image-serv
   templateUrl: './pokemon-species.component.html',
   styleUrls: ['./pokemon-species.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent, TableScrollingViewportComponent]
+  imports: [forwardRef(() => SharedModule), DynamicTableComponent, AsyncPipe, NgIf, SearchComponent, TableScrollingViewportComponent]
 })
 export class PokemonSpeciesComponent implements OnInit {
 

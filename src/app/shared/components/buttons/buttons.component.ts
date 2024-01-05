@@ -1,17 +1,15 @@
 import { AsyncPipe, NgFor } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
 import { IActionConfig } from '../../interfaces/actions-interface';
 import { Actions } from '../../constants/actions';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
   styleUrls: ['./buttons.component.scss'],
   standalone: true,
-  imports: [AsyncPipe, NgFor, MatButtonModule, MatFormFieldModule, MatIconModule]
+  imports: [forwardRef(() => SharedModule), AsyncPipe, NgFor]
 })
 export class ButtonsComponent {
 

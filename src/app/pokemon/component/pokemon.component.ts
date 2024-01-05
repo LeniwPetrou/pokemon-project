@@ -1,6 +1,5 @@
-import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, OnInit, forwardRef } from '@angular/core';
 import { HttpService } from '../services/http-service';
-import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
@@ -18,7 +17,7 @@ import { BackgroundService } from 'src/app/shared/services/background-image-serv
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent, TableScrollingViewportComponent]
+  imports: [forwardRef(() => SharedModule), DynamicTableComponent, AsyncPipe, NgIf, SearchComponent, TableScrollingViewportComponent]
 })
 export class PokemonComponent implements OnInit, AfterContentChecked {
 

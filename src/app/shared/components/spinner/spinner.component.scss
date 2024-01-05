@@ -31,21 +31,21 @@
       .pokeball:after {
         content: "";
         position: absolute;
-        top: calc(100px - 68px);
+        top: calc(100px - 65px);
         left: 0;
         width: 70px;
-        height: 4px;
+        height: 2px;
         background: #3f3f3f;
       }
   
     .pokeball:before {
         content: "";
         position: absolute;
-        top: 27px;
-        left: 27px;
+        top: 30px;
+        left: 30px;
         width: 7px;
         height: 7px;
-        border: solid 4px #3f3f3f;
+        border: solid 2px #3f3f3f;
         border-radius: 50%;
         background: white;
         z-index: 1;
@@ -67,12 +67,12 @@
         from,
         50%,
         to {
-          box-shadow: 0 0 15px -2px #c62828 inset;
+          box-shadow: 0 0 5px -2px #c62828 inset;
         }
       
         25%,
         75% {
-          box-shadow: 0 0 10px -2px #1300ea inset;
+          box-shadow: 0 0 5px -2px #1300ea inset;
         }
     }
     

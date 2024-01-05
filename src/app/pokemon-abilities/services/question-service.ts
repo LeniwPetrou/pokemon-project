@@ -21,6 +21,7 @@ export class QuestionService {
         label: 'Abilities',
         options: this.sharedService.searchAbilities(10, 2000),
         required: true,
+        cssClass: 'col-12',
         order: 1
       })
     ];

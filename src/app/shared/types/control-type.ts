@@ -9,6 +9,7 @@ export class QuestionBase<T> {
     controlType: string;
     type: string;
     options: any;
+    cssClass: string;
   
     constructor(options: {
         value?: T;
@@ -19,6 +20,7 @@ export class QuestionBase<T> {
         controlType?: string;
         type?: string;
         options?: any;
+        cssClass?: string;
       } = {}) {
       this.value = options.value;
       this.key = options.key || '';
@@ -28,5 +30,6 @@ export class QuestionBase<T> {
       this.controlType = options.controlType || '';
       this.type = options.type || '';
       this.options = options.options;
+      this.cssClass = options.cssClass || 'col-sm-12 col-md-12 col-lg-12';
     }
   }

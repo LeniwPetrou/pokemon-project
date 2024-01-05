@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, forwardRef } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
@@ -19,7 +18,7 @@ import { IActionConfig } from 'src/app/shared/interfaces/actions-interface';
   templateUrl: './pokemon-abilities.component.html',
   styleUrls: ['./pokemon-abilities.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent]
+  imports: [forwardRef(() => SharedModule), DynamicTableComponent, AsyncPipe, NgIf, SearchComponent]
 })
 export class PokemonAbilitiesComponent {
 

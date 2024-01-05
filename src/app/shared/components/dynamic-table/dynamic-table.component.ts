@@ -1,23 +1,18 @@
-import { Component, Input } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Component, Input, forwardRef } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { NgFor, NgIf } from '@angular/common';
 import { StoreDataService } from 'src/app/shared/services/store-data-service';
 import { IColumnConfig } from '../../interfaces/column-interface';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatButtonModule } from '@angular/material/button';
 import { ExpandedElementComponent } from '../expanded-element/expanded-element.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-dynamic-table',
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, NgIf, MatPaginatorModule, NgFor, MatIconModule, MatExpansionModule, MatButtonModule, ExpandedElementComponent, MatFormFieldModule, MatInputModule],
+  imports: [forwardRef(() => SharedModule), NgIf, NgFor, ExpandedElementComponent],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),

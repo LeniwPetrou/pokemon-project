@@ -1,4 +1,5 @@
-
-<div *ngFor="let question of questions" class="form-row">
-    <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
-  </div>
+<div class="row">
+    <ng-container *ngFor="let question of questions">
+      <app-dynamic-form-question [question]="question" [form]="form" [class]="question.cssClass"></app-dynamic-form-question>
+    </ng-container>
+</div>

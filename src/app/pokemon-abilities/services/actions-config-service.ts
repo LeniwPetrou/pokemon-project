@@ -12,7 +12,7 @@ import { IActionConfig } from 'src/app/shared/interfaces/actions-interface';
             title: 'Clear them all',
             icon: 'delete',
             color: 'accent',
-            action: 'clear'
+            action: 'reset'
           },
           {
           title: 'Get me the effects',

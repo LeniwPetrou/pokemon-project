@@ -11,13 +11,15 @@ import { QuestionControlService } from '../../services/question-control.service'
 import { QuestionBase } from '../../types/control-type';
 import { MatIconModule } from '@angular/material/icon';
 import { IActionConfig } from '../../interfaces/actions-interface';
+import { ButtonsComponent } from '../buttons/buttons.component';
+import { Actions } from '../../constants/actions';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   standalone: true,
-  imports: [MatCardModule, MatSelectModule, AsyncPipe, NgFor,  FormsModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, DynamicFormComponent, MatIconModule]
+  imports: [MatCardModule, MatSelectModule, AsyncPipe, NgFor,  FormsModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, DynamicFormComponent, MatIconModule, ButtonsComponent]
 })
 export class SearchComponent {
 
@@ -36,8 +38,8 @@ export class SearchComponent {
     this.form = this.qcs.toFormGroup(this.questions as QuestionBase<string>[]);
   }
 
-  search(action: IActionConfig){
-    if (action.action == 'clear')
+  handleAction(action: IActionConfig){
+    if (action.action == Actions.RESET)
     this.form.reset();
     else
     this.onEmitValue.emit(this.form.value);

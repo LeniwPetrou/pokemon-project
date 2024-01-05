@@ -1,5 +1,5 @@
 <div class="container">
-    <button *ngFor="let action of actionsConfig" mat-raised-button color="{{action.color}}" (click)="emitAction(action)">
+    <button *ngFor="let action of actionsConfig" mat-raised-button color="{{action.color}}" (click)="emitAction(action)" [disabled]="!form.valid && action.action !== actions.RESET">
         <mat-icon>{{action.icon}}</mat-icon>
         {{action.title}}
     </button>

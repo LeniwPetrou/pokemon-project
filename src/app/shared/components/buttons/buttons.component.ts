@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { IActionConfig } from '../../interfaces/actions-interface';
+import { Actions } from '../../constants/actions';
 
 @Component({
   selector: 'app-buttons',
@@ -15,7 +16,14 @@ import { IActionConfig } from '../../interfaces/actions-interface';
 export class ButtonsComponent {
 
   @Input() actionsConfig?: IActionConfig[];
-  @Output() onEmitAction: EventEmitter<any> = new EventEmitter(); 
+  @Input() form?: any;
+  @Output() onEmitAction: EventEmitter<any> = new EventEmitter();
+
+  public actions!: any;
+  
+  ngOnInit() {
+    this.actions = Actions;
+  }
 
   public emitAction(action: IActionConfig){
     this.onEmitAction.emit(action);

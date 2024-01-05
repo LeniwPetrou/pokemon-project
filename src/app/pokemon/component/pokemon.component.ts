@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http-service';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -20,7 +20,7 @@ import { BackgroundService } from 'src/app/shared/services/background-image-serv
   standalone: true,
   imports: [MatButtonModule, SharedModule, DynamicTableComponent, AsyncPipe, NgIf, SearchComponent, TableScrollingViewportComponent]
 })
-export class PokemonComponent implements OnInit {
+export class PokemonComponent implements OnInit, AfterContentChecked {
 
   public list$?: Observable<any>;
   public columnConfig!: IColumnConfig; 
@@ -33,13 +33,19 @@ export class PokemonComponent implements OnInit {
   constructor(
     public httpService: HttpService,
     private tableConfigService: TableConfigService,
-    private backgroundService: BackgroundService
+    private backgroundService: BackgroundService,
+    private cdRef: ChangeDetectorRef   
     ) { 
   }
 
   ngOnInit(): void {
     this.columnConfig = this.tableConfigService.getColumnConfig();
-    this.backgroundService.setBackground('https://cdn.wallpapersafari.com/14/63/ZtyKPO.jpg')
+    this.backgroundService.setBackground('https://cdn.wallpapersafari.com/14/63/ZtyKPO.jpg');
+    this.getPokemons();
+  }
+
+  ngAfterContentChecked(): void {
+    this.cdRef.detectChanges(); 
   }
   
   getPokemons (){

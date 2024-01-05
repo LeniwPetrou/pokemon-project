@@ -14,11 +14,10 @@ export class TableScrollingViewportComponent implements OnInit, OnChanges {
   @Input() totalItems: number = 0;
   @Input() itemSize: number = 0;
   @Output() itemsRangeChange = new EventEmitter<ListRange>();
-
   @ViewChild(CdkVirtualScrollViewport, { static: true })
-  cdkViewport!: CdkVirtualScrollViewport;
-
-  virtualItems: undefined[] = [];
+  
+  public cdkViewport!: CdkVirtualScrollViewport;
+  public virtualItems: undefined[] = [];
 
   constructor() { }
 

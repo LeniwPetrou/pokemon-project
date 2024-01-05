@@ -1,10 +1,4 @@
 <div class="table-class center">
-  <!-- <div class="example-header">
-    <mat-form-field appearance="outline">
-      <mat-label>Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Pick me...">
-    </mat-form-field>
-  </div> -->
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="elevated">
       <ng-container *ngFor="let column of displayedColumns; let i=index" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>{{ columnConfig[column].title }}</th>
@@ -27,7 +21,6 @@
             </div>
         </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
     <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
         class="example-element-row"

@@ -12,6 +12,7 @@ import { QuestionService } from '../services/question-service';
 import { QuestionBase } from 'src/app/shared/types/control-type';
 import { BackgroundService } from 'src/app/shared/services/background-image-service';
 import { ActionsConfigService } from '../services/actions-config-service';
+import { IActionConfig } from 'src/app/shared/interfaces/actions-interface';
 
 @Component({
   selector: 'app-pokemon-abilities',
@@ -26,7 +27,7 @@ export class PokemonAbilitiesComponent {
   public columnConfig!: IColumnConfig;
   public formVal!: string;
   public questions?: Observable<QuestionBase<string>[]>;
-  public actionsConfig?: any; 
+  public actionsConfig?: IActionConfig[]; 
 
   constructor(
     public httpService: HttpService,

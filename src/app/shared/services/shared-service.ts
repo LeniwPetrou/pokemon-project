@@ -27,6 +27,23 @@ import { environment } from 'src/environments/environment';
         )
       )
     } 
+
+    searchSpecies(offset: number, limit: number): Observable<any>{
+      return this.http.get<any[]>(`${this.baseUrl}v2/pokemon-species?offset=${offset}&limit=${limit}`).pipe(
+        shareReplay(1),
+        map((response: any) => {
+          console.log(response)
+          let results$ = response.results.map((element:any) => {
+             return {
+              'key': element.name,
+              'value': element.name
+             } 
+          })
+          return results$;
+        }
+        )
+      )
+    } 
   }
   
   

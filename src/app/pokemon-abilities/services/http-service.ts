@@ -30,6 +30,7 @@ import { environment } from 'src/environments/environment';
       return this.http.get<any[]>(`${this.baseUrl}v2/ability/${name}/`).pipe(
         shareReplay(1),
         map((response: any) => {
+          console.log('abilities',response)
           let results$ = response.effect_entries[1];
           let list$ = [];
           list$.push(results$);

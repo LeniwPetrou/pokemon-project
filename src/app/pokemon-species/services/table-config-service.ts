@@ -8,9 +8,9 @@ import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
     
     public getColumnConfig(): IColumnConfig {
         return {
-          name: {
-            key: 'name',
-            title: 'Name'
+          flavor_text: {
+            key: 'flavor_text',
+            title: 'flavor_text'
         }
       }
     }

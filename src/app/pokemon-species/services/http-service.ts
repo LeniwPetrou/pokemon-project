@@ -25,22 +25,18 @@ import { environment } from 'src/environments/environment';
       )
     }
 
-    searchByName(url: string): Observable<any>{
-      return this.http.get<any[]>(`${url}`).pipe(
+    searchByName(name: string): Observable<any>{
+      return this.http.get<any[]>(`${this.baseUrl}v2/pokemon-species/${name}/`).pipe(
         shareReplay(1),
         map((response: any) => {
-          return {abilities: response.abilities, img: response.sprites.front_default, experience: response.base_experience}
-        })
+          let results$ = response.flavor_text_entries[1];
+          console.log(response.flavor_text_entries[1]);
+          let list$ = [];
+          list$.push(results$);
+          return list$;
+        }
+        )
       )
     }
-
-    // searchByName(url: string): Observable<any>{
-    //   return this.http.get<any[]>(`${url}`).pipe(
-    //     shareReplay(1),
-    //     switchMap((response: any) => {
-    //       return response.abilities.map((ab: any) => ab.ability.url);
-    //     })
-    //   )
-    // }
   }
   

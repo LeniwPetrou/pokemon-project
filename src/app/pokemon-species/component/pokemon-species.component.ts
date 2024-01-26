@@ -1,11 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, Renderer2, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef } from '@angular/core';
 import { HttpService } from '../services/http-service';
-import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicTableComponent } from 'src/app/shared/components/dynamic-table/dynamic-table.component';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { PageEvent } from '@angular/material/paginator';
 import { TableConfigService } from '../services/table-config-service';
 import { IColumnConfig } from 'src/app/shared/interfaces/column-interface';
 import { SearchComponent } from 'src/app/shared/components/search/search.component';
@@ -13,6 +11,9 @@ import { QuestionBase } from 'src/app/shared/types/control-type';
 import { ListRange } from '@angular/cdk/collections';
 import { TableScrollingViewportComponent } from 'src/app/shared/components/table-scrolling-viewport/table-scrolling-viewport.component';
 import { BackgroundService } from 'src/app/shared/services/background-image-service';
+import { QuestionService } from '../services/question-service';
+import { ActionsConfigService } from '../services/actions-config-service';
+import { IActionConfig } from 'src/app/shared/interfaces/actions-interface';
 
 @Component({
   selector: 'app-pokemon-species',
@@ -30,22 +31,22 @@ export class PokemonSpeciesComponent implements OnInit {
   public range!: ListRange;
   public list?: any;
   public listSlice$ = new BehaviorSubject<any>(0);
+  public actionsConfig?: IActionConfig[];
 
   constructor(
     public httpService: HttpService,
     private tableConfigService: TableConfigService,
-    private backgroundService: BackgroundService
+    private backgroundService: BackgroundService,
+    private questionService: QuestionService,
+    private actionsConfigService: ActionsConfigService
     ) { 
   }
 
   ngOnInit(): void {
     this.columnConfig = this.tableConfigService.getColumnConfig();
     this.backgroundService.setBackground('https://wallpapercave.com/wp/wp2763494.jpg');
-  }
-  
-  getPokemons (){
-    this.list$ = this.httpService.search(10, 2000)
-    this.updateListSlice();
+    this.questions = this.questionService.getQuestions();
+    this.actionsConfig = this.actionsConfigService.getActionConfig();
   }
 
   getEmittedValue(formValue: any){
